@@ -1,7 +1,20 @@
-# Vue 3 + Vite
+# Class (same) not generated during class binding for v-for/ngFor
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+For the following code the bg class will not be generated for the first 'div' element, [screenshot](./src/assets//class_binding_issue.png)
 
-## Recommended IDE Setup
+```js
+const switches = [{
+  on: true,
+}, {
+  on: false,
+}]
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+```
+
+```html
+<div
+    v-for="s of switches"
+    class="w-32 h-32 border-2 border-dashed"
+    :class="{ 'bg-pink-300': s.on, 'bg-pink-300': !s.on }"
+></div>
+```
